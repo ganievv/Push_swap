@@ -6,25 +6,11 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:05:44 by sganiev           #+#    #+#             */
-/*   Updated: 2024/05/31 17:34:42 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/05/31 18:56:01 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// you should check here for duplicated numbers
-
-static t_list	*find_last_node(t_list *head)
-{
-	t_list	*last;
-
-	while (head)
-	{
-		last = head;
-		head = head->next;
-	}
-	return (last);
-}
 
 static void	append_node(int num, t_sort *data)
 {
