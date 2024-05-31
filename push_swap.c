@@ -6,17 +6,33 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:38:00 by sganiev           #+#    #+#             */
-/*   Updated: 2024/05/31 18:28:37 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/05/31 18:47:30 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static int	is_str_empty(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '\0')
+		return (1);
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_sort	data;
 
-	if (argc == 1 || (argc == 2 && (argv[1][0] == '\0')))
+	if (argc == 1 || (argc == 2 && (is_str_empty(argv[1]) == 1)))
 		return (1);
 	data.err_flag = 0;
 	data.is_malloc = 0;
