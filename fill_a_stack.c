@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:05:44 by sganiev           #+#    #+#             */
-/*   Updated: 2024/05/31 17:15:58 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/05/31 17:34:42 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,6 @@ void	fill_a_stack(t_sort *data)
 		append_node(ft_atoi(data->str_nums[i]), data);
 		i++;
 	}
+	if (data->is_malloc == 1)
+		clean_arr_ptrs(data);
 }
