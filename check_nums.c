@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 13:30:42 by sganiev           #+#    #+#             */
-/*   Updated: 2024/05/31 14:18:13 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/05/31 17:45:45 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,36 @@ static int	check_str(char *str)
 	return (0);
 }
 
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
+}
+
+int	check_duplicated_nums(char **arr)
+{
+	int	i;
+	int	y;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		y = i + 1;
+		while (arr[y] != NULL)
+		{
+			if (ft_strcmp(arr[i], arr[y]) == 0)
+				return (1);
+			y++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	check_nums(char **arr)
 {
 	int	i;
@@ -44,5 +74,7 @@ int	check_nums(char **arr)
 			return (1);
 		i++;
 	}
+	if (check_duplicated_nums(arr) == 1)
+		return (1);
 	return (0);
 }
