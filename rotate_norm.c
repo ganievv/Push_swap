@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 21:31:30 by sganiev           #+#    #+#             */
-/*   Updated: 2024/05/31 21:40:17 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/01 13:00:50 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@ void	rotate_norm(t_list **stack)
 {
 	t_list	*first;
 	t_list	*last;
-	int		buf;
 
-	first = *stack;
-	last = find_last_node(first);
-	buf = last->num;
-	last->num = first->num;
-	first->num = buf;
+	if (stack && *stack && (*stack)->next)
+	{
+		last = find_last_node(*stack);
+		first = *stack;
+		*stack = (*stack)->next;
+		(*stack)->prev = NULL;
+		last->next = first;
+		last->next->next = NULL;
+		last->next->prev = last;
+	}
 }
