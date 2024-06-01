@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 21:31:30 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/01 13:00:50 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/01 15:42:01 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	rotate_norm(t_list **stack)
 		*stack = (*stack)->next;
 		(*stack)->prev = NULL;
 		last->next = first;
-		last->next->next = NULL;
-		last->next->prev = last;
+		first->next = NULL;
+		first->prev = last;
+		write (1, "ra\n", 3);
 	}
 }
