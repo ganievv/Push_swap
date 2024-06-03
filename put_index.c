@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:39:08 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/03 15:39:22 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/03 15:49:45 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 void	put_index(t_list **stack)
 {
-	int	i;
+	t_list	*current;
+	int		i;
 
-	i = 0;
-	while (*stack)
+	if (stack && *stack)
 	{
-		(*stack)->index = i;
-		*stack = (*stack)->next;
-		i++;
+		i = 0;
+		current = *stack;
+		while (current)
+		{
+			current->index = i;
+			current = current->next;
+			i++;
+		}
 	}
 }
