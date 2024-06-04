@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:56:22 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/04 18:45:34 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/04 21:03:40 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,28 @@ static int	choose_min_steps(t_sort *data)
 // if rotate direction is 1  -> rotate_norm()
 // if rotate direction is -1 -> rotate_reverse()
 
-static void	calc_rotations(t_rotate_num *inf, int index,
-int stack_size, int stack)
+// if stack == 1 -> handle 'a' stack
+
+// what about when there is no need for rotations ??
+
+static void	calc_rotations(int *rotate_num, int *rotate_dir, int index,
+int stack_size)
 {
-	if (stack == 1)
+	if (index == 0)
 	{
-		if ((index + 1) <= stack_size / 2)
-		{
-			inf->rotate_a = index;
-			inf->rotate_a_dir = 1;
-		}
-		else
-		{
-			inf->rotate_a = (stack_size - index);
-			inf->rotate_a_dir = -1;
-		}
+		(*rotate_num) = index;
+		(*rotate_dir) = 0;
+		return ;
+	}
+	if ((index + 1) <= stack_size / 2)
+	{
+		(*rotate_num) = index;
+		(*rotate_dir) = 1;
 	}
 	else
 	{
-		if (index + 1 <= stack_size / 2)
-			inf->rotate_b_dir = 1;
-		else
-		{
-			inf->rotate_b = (stack_size - index);
-			inf->rotate_b_dir = -1;
-		}
+		(*rotate_num) = (stack_size - index);
+		(*rotate_dir) = -1;
 	}
 }
 
@@ -99,17 +96,20 @@ static void	rotation_plus(t_rotate_num *inf, int *steps_count)
 static int	choose_push_num(t_sort *data)
 {
 	t_list			*current_a;
-	t_rotate_num	inf;
 	int				b_index;
 
 	current_a = data->a_stack;
 	b_stack_size(data);
 	while (current_a)
 	{
-		calc_rotations(&inf, current_a->index, data->num_count_a, 1);
+		calc_rotations(&(data->a_stack->inf.rotate_a),
+			&(data->a_stack->inf.rotate_a_dir),
+			current_a->index, data->num_count_a);
 		b_index = find_insert_position_b(data, current_a->num);
-		calc_rotations(&inf, b_index, data->num_count_b, -1);
-		rotation_plus(&inf, &(current_a->steps_count));
+		calc_rotations(&(data->a_stack->inf.rotate_b),
+			&(data->a_stack->inf.rotate_b_dir),
+			b_index, data->num_count_b);
+		rotation_plus(&(data->a_stack->inf), &(current_a->steps_count));
 		current_a = current_a->next;
 	}
 	return (choose_min_steps(data));
@@ -127,7 +127,6 @@ void	sort_large_amount(t_sort *data)
 		current_a->steps_count = 0;
 		current_a = current_a->next;
 	}
-	current_a = data->a_stack;
 	while (data->num_count_a > 3)
 	{
 		num = choose_push_num(data);
