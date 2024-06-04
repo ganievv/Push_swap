@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:43:37 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/03 14:23:41 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/04 15:17:30 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	two_num(t_sort *data)
 
 	current = data->a_stack;
 	if (current->num > current->next->num)
-		swap(data->a_stack, data->num_count);
+		swap(data->a_stack, data->num_count_a);
 }
 
 static	void	three_num(t_sort *data)
@@ -34,7 +34,7 @@ static	void	three_num(t_sort *data)
 		rotate_reverse(&(data->a_stack));
 	current = data->a_stack;
 	if (current->num > current->next->num)
-		swap(data->a_stack, data->num_count);
+		swap(data->a_stack, data->num_count_a);
 }
 
 void	sort_less_three(t_sort *data)
@@ -42,8 +42,8 @@ void	sort_less_three(t_sort *data)
 	t_list	*current;
 
 	current = data->a_stack;
-	if (data->num_count == 2)
+	if (data->num_count_a == 2)
 		two_num(data);
-	else if (data->num_count == 3)
+	else if (data->num_count_a == 3)
 		three_num(data);
 }
