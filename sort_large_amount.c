@@ -6,23 +6,11 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:56:22 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/04 18:16:03 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/04 18:45:34 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static	void	steps_initialize(t_sort *data)
-{
-	t_list	*current;
-
-	current = data->a_stack;
-	while (current)
-	{
-		current->steps_count = 0;
-		current = current->next;
-	}
-}
 
 // this "(data->num_count > 3)" should be in other loop above
 // while (current_a). Because after finding the best number to push
@@ -52,51 +40,76 @@ static int	choose_min_steps(t_sort *data)
 	return (1);
 }
 
+// if rotate direction is 1  -> rotate_norm()
+// if rotate direction is -1 -> rotate_reverse()
+
+static void	calc_rotations(t_rotate_num *inf, int index,
+int stack_size, int stack)
+{
+	if (stack == 1)
+	{
+		if ((index + 1) <= stack_size / 2)
+		{
+			inf->rotate_a = index;
+			inf->rotate_a_dir = 1;
+		}
+		else
+		{
+			inf->rotate_a = (stack_size - index);
+			inf->rotate_a_dir = -1;
+		}
+	}
+	else
+	{
+		if (index + 1 <= stack_size / 2)
+			inf->rotate_b_dir = 1;
+		else
+		{
+			inf->rotate_b = (stack_size - index);
+			inf->rotate_b_dir = -1;
+		}
+	}
+}
+
+// if (inf->rotate_a_dir == inf->rotate_b_dir)
+// then rotatings are the same direction
+
+// in the end you need to add +1 because of push number to 'b' step
+
+static void	rotation_plus(t_rotate_num *inf, int *steps_count)
+{
+	if (inf->rotate_a_dir == inf->rotate_b_dir)
+	{
+		if (inf->rotate_a < inf->rotate_b)
+		{
+			(*steps_count) = inf->rotate_a;
+			(*steps_count) += (inf->rotate_b - inf->rotate_a);
+		}
+		else
+		{
+			(*steps_count) = inf->rotate_b;
+			(*steps_count) += (inf->rotate_a - inf->rotate_b);
+		}
+	}
+	else
+		(*steps_count) = inf->rotate_a + inf->rotate_b;
+	(*steps_count)++;
+}
+
 static int	choose_push_num(t_sort *data)
 {
 	t_list			*current_a;
 	t_rotate_num	inf;
+	int				b_index;
 
 	current_a = data->a_stack;
 	b_stack_size(data);
 	while (current_a)
 	{
-		if ((current_a->index + 1) <= data->num_count_a / 2) // rotate norm
-		{
-			inf.rotate_a = current_a->index;
-			inf.rotate_a_dir = 1;
-		}
-		else  // rotate reverse
-		{
-			inf.rotate_a = (data->num_count_a - current_a->index);
-			inf.rotate_a_dir = -1;
-		}
-		inf.rotate_b = find_insert_position_b(data, current_a->num);
-		if (inf.rotate_b + 1 <= data->num_count_b / 2)  // rotate norm
-		{
-			inf.rotate_b_dir = 1;
-		}
-		else   // rotate reverse
-		{
-			inf.rotate_b = (data->num_count_b - inf.rotate_b);
-			inf.rotate_b_dir = -1;
-		}
-		if (inf.rotate_a_dir == inf.rotate_b_dir) // if rotating is the same direction
-		{
-			if (inf.rotate_a < inf.rotate_b)
-			{
-				current_a->steps_count = inf.rotate_a;
-				current_a->steps_count += (inf.rotate_b - inf.rotate_a);
-			}
-			else
-			{
-				current_a->steps_count = inf.rotate_b;
-				current_a->steps_count += (inf.rotate_a - inf.rotate_b);
-			}
-		}
-		else
-			current_a->steps_count = inf.rotate_a + inf.rotate_b;
-		current_a->steps_count++; // push number to 'b'
+		calc_rotations(&inf, current_a->index, data->num_count_a, 1);
+		b_index = find_insert_position_b(data, current_a->num);
+		calc_rotations(&inf, b_index, data->num_count_b, -1);
+		rotation_plus(&inf, &(current_a->steps_count));
 		current_a = current_a->next;
 	}
 	return (choose_min_steps(data));
@@ -108,7 +121,12 @@ void	sort_large_amount(t_sort *data)
 	int		num;
 
 	push_top_two(data);
-	steps_initialize(data);
+	current_a = data->a_stack;
+	while (current_a)
+	{
+		current_a->steps_count = 0;
+		current_a = current_a->next;
+	}
 	current_a = data->a_stack;
 	while (data->num_count_a > 3)
 	{
