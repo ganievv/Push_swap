@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:56:22 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/04 14:59:14 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/04 17:50:22 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	push_top_two(t_sort *data)
 {
 	push(&(data->b_stack), &(data->a_stack));
 	write (1, "pb\n", 3);
-	if (data->num_count > 3)
+	if (data->num_count_a > 3)
 	{
 		push(&(data->b_stack), &(data->a_stack));
 		write (1, "pb\n", 3);
@@ -59,17 +59,16 @@ static int	find_insert_position_b(t_sort *data, int nbr)
 	max_b = find_max(data->b_stack);
 	min_b = find_min(data->b_stack);
 	current_b = max_b;
+	if (nbr > max_b->num || nbr < min_b->num)
+		return (max_b->index);
 	while (1)
 	{
 		if (current_b->next == NULL)
 			next_b = data->b_stack;
 		else
 			next_b = current_b->next;
-		if ((current_b->num > nbr)
-			&& (next_b->num < nbr))
-		{
+		if ((current_b->num > nbr) && (next_b->num < nbr))
 			return (next_b->index);
-		}
 		current_b = next_b;
 		if (current_b->num == min_b->num)
 			return (-1);
@@ -78,23 +77,52 @@ static int	find_insert_position_b(t_sort *data, int nbr)
 
 static void	choose_push_num(t_sort *data)
 {
-	t_list	*current_a;
-	t_list	*current_b;
-	int		rotate_a;
-	int		rotate_b;
+	t_list			*current_a;
+	t_rotate_num	inf;
 
-	rotate_a = 0;
-	rotate_b = 0;
 	current_a = data->a_stack;
-	current_b = data->b_stack;
+	b_stack_size(data);
 	while (current_a)
 	{
-		if ((current_a->index + 1) <= data->num_count / 2)
-			rotate_a += current_a->index;
+		if ((current_a->index + 1) <= data->num_count_a / 2) // rotate norm
+		{
+			inf.rotate_a = current_a->index;
+			inf.rotate_a_dir = 1;
+		}
+		else  // rotate reverse
+		{
+			inf.rotate_a = (data->num_count_a - current_a->index);
+			inf.rotate_a_dir = -1;
+		}
+		inf.rotate_b = find_insert_position_b(data, current_a->num);
+		if (inf.rotate_b + 1 <= data->num_count_b / 2)  // rotate norm
+		{
+			inf.rotate_b_dir = 1;
+		}
+		else   // rotate reverse
+		{
+			inf.rotate_b = (data->num_count_b - inf.rotate_b);
+			inf.rotate_b_dir = -1;
+		}
+		if (inf.rotate_a_dir == inf.rotate_b_dir) // if rotating is the same direction
+		{
+			if (inf.rotate_a < inf.rotate_b)
+			{
+				current_a->steps_count = inf.rotate_a;
+				current_a->steps_count += (inf.rotate_b - inf.rotate_a);
+			}
+			else
+			{
+				current_a->steps_count = inf.rotate_b;
+				current_a->steps_count += (inf.rotate_a - inf.rotate_b);
+			}
+		}
 		else
-			rotate_a += (data->num_count - current_a->index);
+			current_a->steps_count = inf.rotate_a + inf.rotate_b;
+		current_a->steps_count++; // push number to 'b'
 		current_a = current_a->next;
 	}
+	choose_min_steps(data);
 }
 
 void	sort_large_amount(t_sort *data)
@@ -104,9 +132,9 @@ void	sort_large_amount(t_sort *data)
 	push_top_two(data);
 	steps_initialize(data);
 	current_a = data->a_stack;
-	while (data->num_count > 3)
+	while (data->num_count_a > 3)
 	{
 		choose_push_num(data);
-		data->num_count--;
+		data->num_count_a--;
 	}
 }
