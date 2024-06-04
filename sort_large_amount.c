@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:56:22 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/04 17:50:22 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/04 18:08:43 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,30 @@ static int	find_insert_position_b(t_sort *data, int nbr)
 	}
 }
 
-static void	choose_push_num(t_sort *data)
+static int	choose_min_steps(t_sort *data)
+{
+	t_list	*current_a;
+	int		min;
+
+	current_a = data->a_stack;
+	min = current_a->steps_count;
+	while (current_a)
+	{
+		if (current_a->steps_count < min)
+			min = current_a->steps_count;
+		current_a = current_a->next;
+	}
+	current_a = data->a_stack;
+	while (current_a)
+	{
+		if (current_a->steps_count == min)
+			return (current_a->num);
+		current_a = current_a->next;
+	}
+	return (1);
+}
+
+static int	choose_push_num(t_sort *data)
 {
 	t_list			*current_a;
 	t_rotate_num	inf;
@@ -122,19 +145,21 @@ static void	choose_push_num(t_sort *data)
 		current_a->steps_count++; // push number to 'b'
 		current_a = current_a->next;
 	}
-	choose_min_steps(data);
+	return (choose_min_steps(data));
 }
 
 void	sort_large_amount(t_sort *data)
 {
 	t_list	*current_a;
+	int		num;
 
 	push_top_two(data);
 	steps_initialize(data);
 	current_a = data->a_stack;
 	while (data->num_count_a > 3)
 	{
-		choose_push_num(data);
+		num = choose_push_num(data);
+		make_push_op(data, num);
 		data->num_count_a--;
 	}
 }
