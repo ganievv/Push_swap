@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 17:50:12 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/04 15:16:34 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/05 15:00:01 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 static void	print_a_stack(t_list *stack)
 {
 	ft_printf("a_stack: ");
+	while (stack)
+	{
+		ft_printf("%d ", stack->num);
+		stack = stack->next;
+	}
+	ft_printf("\n");
+}
+
+static void	print_b_stack(t_list *stack)
+{
+	ft_printf("b_stack: ");
 	while (stack)
 	{
 		ft_printf("%d ", stack->num);
@@ -35,5 +46,6 @@ void	print_sort_commands(t_sort *data)
 			sort_large_amount(data);
 	}
 	print_a_stack(data->a_stack);
+	print_b_stack(data->b_stack);
 	free_lists(data);
 }
