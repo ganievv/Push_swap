@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 19:15:26 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/04 21:48:49 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/05 14:51:55 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	swap(t_list *stack, int num_count)
 		tmp = stack->num;
 		stack->num = stack->next->num;
 		stack->next->num = tmp;
-		put_index(stack);
+		put_index(&stack);
 	}
 }
