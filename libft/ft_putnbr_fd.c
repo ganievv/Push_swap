@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 11:46:40 by sganiev           #+#    #+#             */
-/*   Updated: 2024/03/12 13:46:11 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/05/31 14:23:06 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ static unsigned int	symb_caunt(int n, unsigned int minus_flag)
 static void	fill_str(int n, char *number, unsigned int minus_flag)
 {
 	int	size;
-	int	i;
 
-	i = 0;
 	size = symb_caunt(n, minus_flag);
 	number[size] = '\0';
 	while (n > 0)
