@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:56:22 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 16:43:03 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 17:39:59 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,9 @@ static int	choose_push_num(t_sort *data)
 	return (choose_min_steps(data));
 }
 
+// when while loops (data->num_count_a > 3) is ended
+// do you need to rotate 'b' stack if it is not in descending order ???
+
 void	sort_large_amount(t_sort *data)
 {
 	t_list	*current_a;
@@ -130,7 +133,8 @@ void	sort_large_amount(t_sort *data)
 	while (data->num_count_a > 3)
 	{
 		num = choose_push_num(data);
-		make_push_op(data, num);
+		make_push_op_b(data, num);
 		data->num_count_a--;
 	}
+	sort_less_three(data);
 }

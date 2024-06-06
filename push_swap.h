@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:43:06 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 15:47:25 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 17:40:21 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	fill_a_stack(t_sort *data);
 void	print_sort_commands(t_sort *data);
 t_list	*find_last_node(t_list *head);
 void	swap(t_list *stack, int num_count);
-void	push(t_list **stack_dst, t_list **stack_src);
+void	push(t_list **stack_dst, t_list **stack_src, int *dst_s, int *src_s);
 void	rotate_norm(t_list **stack);
 void	rotate_reverse(t_list **stack);
 void	sort_less_three(t_sort *data);
@@ -69,6 +69,6 @@ t_list	*find_min(t_list *stack);
 t_list	*find_max(t_list *stack);
 int		find_insert_position_b(t_sort *data, int nbr);
 void	push_top_two(t_sort *data);
-void	make_push_op(t_sort *data, int num);
+void	make_push_op_b(t_sort *data, int num);
 
 #endif
