@@ -6,7 +6,7 @@
 #    By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 18:36:33 by sganiev           #+#    #+#              #
-#    Updated: 2024/06/06 17:48:15 by sganiev          ###   ########.fr        #
+#    Updated: 2024/06/06 18:49:55 by sganiev          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ clean_arr_ptrs.c fill_a_stack.c print_sort_commands.c     \
 find_last_node.c  swap.c rotate_norm.c sort_less_three.c  \
 rotate_reverse.c free_lists.c sort_large_amount.c push.c  \
 is_sorted.c put_index.c stack_size.c find_min.c           \
-find_insert_position_b.c push_top_two.c make_push_op.c    \
+find_insert_position_b.c push_top_two.c make_push_op_b.c  \
 find_max.c make_push_op_a.c \
 
 CFLAGS = -g -Wall -Wextra -Werror
