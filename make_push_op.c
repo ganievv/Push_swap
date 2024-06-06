@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 18:50:03 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/05 14:58:39 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 16:00:17 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	make_push_op(t_sort *data, int nbr)
 		current_a->inf.rotate_a_dir);
 	rest_rotate_b(&(data->b_stack), &(current_a->inf.rotate_b),
 		current_a->inf.rotate_b_dir);
-	push(&(data->b_stack), &(data->a_stack));
+	push(&(data->b_stack), &(data->a_stack),
+		&(data->num_count_b), &(data->num_count_a));
 	write (1, "pb\n", 3);
 }
