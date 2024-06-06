@@ -6,11 +6,13 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:38:00 by sganiev           #+#    #+#             */
-/*   Updated: 2024/05/31 18:47:30 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/01 13:59:16 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// return (0) or return (1) when there is no parameters ???
 
 static int	is_str_empty(char *str)
 {
@@ -33,7 +35,7 @@ int	main(int argc, char **argv)
 	t_sort	data;
 
 	if (argc == 1 || (argc == 2 && (is_str_empty(argv[1]) == 1)))
-		return (1);
+		return (0);
 	data.err_flag = 0;
 	data.is_malloc = 0;
 	if (argc == 2)
