@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 17:47:27 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 18:44:36 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 19:44:15 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,16 @@ static void	move_min_up(t_sort *data)
 	}
 }
 
+// this line "current_b = current_b->next" doesn't go as planed
+
 void	make_push_op_a(t_sort *data)
 {
 	t_list	*current_b;
 	int		a_index;
 
-	current_b = data->b_stack;
-	while (current_b)
+	while (data->num_count_b > 0)
 	{
+		current_b = data->b_stack;
 		a_index = find_insert_position_a(data, current_b->num);
 		calc_rotations(&(current_b->inf.rotate_a),
 			&(current_b->inf.rotate_a_dir),
@@ -109,7 +111,6 @@ void	make_push_op_a(t_sort *data)
 		push(&(data->a_stack), &(data->b_stack),
 			&(data->num_count_a), &(data->num_count_b));
 		write (1, "pa\n", 3);
-		current_b = current_b->next;
 	}
 	move_min_up(data);
 }
