@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:56:22 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/04 21:03:40 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 15:28:24 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static int	choose_push_num(t_sort *data)
 	int				b_index;
 
 	current_a = data->a_stack;
-	b_stack_size(data);
+	stack_size(data->b_stack, &(data->num_count_b));
 	while (current_a)
 	{
 		calc_rotations(&(data->a_stack->inf.rotate_a),
