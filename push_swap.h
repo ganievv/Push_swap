@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:43:06 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 17:40:21 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 17:48:07 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ t_list	*find_max(t_list *stack);
 int		find_insert_position_b(t_sort *data, int nbr);
 void	push_top_two(t_sort *data);
 void	make_push_op_b(t_sort *data, int num);
+void	make_push_op_a(t_sort *data);
 
 #endif

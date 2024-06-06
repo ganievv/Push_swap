@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:56:22 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 17:39:59 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 18:23:35 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 // while (current_a). Because after finding the best number to push
 // you should push it and then "data->num_count--" and than start from the first
 // node again for finding the best node to push
+
+// check if everywhere where it is needed you have 'static' in function's name
 
 static int	choose_min_steps(t_sort *data)
 {
@@ -137,4 +139,5 @@ void	sort_large_amount(t_sort *data)
 		data->num_count_a--;
 	}
 	sort_less_three(data);
+	make_push_op_a(data);
 }
