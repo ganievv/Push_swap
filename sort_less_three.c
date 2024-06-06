@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:43:37 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/04 21:48:38 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 22:18:50 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ static	void	three_num(t_sort *data)
 
 void	sort_less_three(t_sort *data)
 {
-	t_list	*current;
-
-	current = data->a_stack;
 	if (data->num_count_a == 2)
 		two_num(data);
 	else if (data->num_count_a == 3)
