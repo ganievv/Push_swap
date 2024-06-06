@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:56:22 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 18:23:35 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 19:21:14 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ void	sort_large_amount(t_sort *data)
 	{
 		num = choose_push_num(data);
 		make_push_op_b(data, num);
-		data->num_count_a--;
 	}
 	sort_less_three(data);
 	make_push_op_a(data);
