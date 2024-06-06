@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:05:44 by sganiev           #+#    #+#             */
-/*   Updated: 2024/05/31 18:56:01 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/01 15:13:56 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	fill_a_stack(t_sort *data)
 
 	i = 0;
 	data->a_stack = NULL;
+	data->b_stack = NULL;
 	while (data->str_nums[i])
 	{
 		append_node(ft_atoi(data->str_nums[i]), data);
