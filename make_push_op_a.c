@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 17:47:27 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 18:31:34 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 18:44:36 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,21 @@ static void	rotate_a(t_list **stack, int *rotate_a, int rotate_a_dir)
 	}
 }
 
+static void	move_min_up(t_sort *data)
+{
+	t_list	*min_a;
+
+	min_a = find_min(data->a_stack);
+	if (min_a->index != 0)
+	{
+		calc_rotations(&(min_a->inf.rotate_a),
+			&(min_a->inf.rotate_a_dir),
+			min_a->index, data->num_count_a);
+		rotate_a(&(data->a_stack), &(min_a->inf.rotate_a),
+			min_a->inf.rotate_a_dir);
+	}
+}
+
 void	make_push_op_a(t_sort *data)
 {
 	t_list	*current_b;
@@ -96,4 +111,5 @@ void	make_push_op_a(t_sort *data)
 		write (1, "pa\n", 3);
 		current_b = current_b->next;
 	}
+	move_min_up(data);
 }
