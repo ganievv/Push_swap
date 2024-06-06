@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:56:22 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 15:28:24 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 16:43:03 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,14 @@ static int	choose_push_num(t_sort *data)
 	stack_size(data->b_stack, &(data->num_count_b));
 	while (current_a)
 	{
-		calc_rotations(&(data->a_stack->inf.rotate_a),
-			&(data->a_stack->inf.rotate_a_dir),
+		calc_rotations(&(current_a->inf.rotate_a),
+			&(current_a->inf.rotate_a_dir),
 			current_a->index, data->num_count_a);
 		b_index = find_insert_position_b(data, current_a->num);
-		calc_rotations(&(data->a_stack->inf.rotate_b),
-			&(data->a_stack->inf.rotate_b_dir),
+		calc_rotations(&(current_a->inf.rotate_b),
+			&(current_a->inf.rotate_b_dir),
 			b_index, data->num_count_b);
-		rotation_plus(&(data->a_stack->inf), &(current_a->steps_count));
+		rotation_plus(&(current_a->inf), &(current_a->steps_count));
 		current_a = current_a->next;
 	}
 	return (choose_min_steps(data));
