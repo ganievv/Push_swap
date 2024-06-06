@@ -6,23 +6,19 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:41:02 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/03 13:58:10 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 15:46:51 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_sort *data)
+int	is_sorted(t_list *stack)
 {
-	t_list	*current;
-	int		min;
-
-	current = data->a_stack;
-	while (current && current->next)
+	while (stack && stack->next)
 	{
-		if (current->num > current->next->num)
+		if (stack->num > stack->next->num)
 			return (0);
-		current = current->next;
+		stack = stack->next;
 	}
 	return (1);
 }

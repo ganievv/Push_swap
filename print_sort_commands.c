@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 17:50:12 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 15:35:39 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 15:50:06 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ static void	print_b_stack(t_list *stack)
 
 void	print_sort_commands(t_sort *data)
 {
-	stack_size(data->a_stack, &(data->num_count_a));
-	stack_size(data->b_stack, &(data->num_count_b));
-	put_index(data->a_stack);
-	if (is_sorted(data) == 0)
+	if (is_sorted(data->a_stack) == 0)
 	{
+		stack_size(data->a_stack, &(data->num_count_a));
+		put_index(data->a_stack);
 		if (data->num_count_a < 4)
 			sort_less_three(data);
 		else if (data->num_count_a > 3)
