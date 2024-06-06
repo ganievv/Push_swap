@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:43:06 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 15:25:54 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/06 15:35:27 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	sort_less_three(t_sort *data);
 void	free_lists(t_sort *data);
 void	sort_large_amount(t_sort *data);
 int		is_sorted(t_sort *data);
-void	put_index(t_list **stack);
+void	put_index(t_list *stack);
 void	stack_size(t_list *stack, int *size);
 t_list	*find_min(t_list *stack);
 t_list	*find_max(t_list *stack);
