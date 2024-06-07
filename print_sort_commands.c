@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 17:50:12 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 19:52:47 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/07 15:31:34 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 //	ft_printf("\n");
 //}
 
+//print_a_stack(data->a_stack);
+//print_b_stack(data->b_stack);
+
 void	print_sort_commands(t_sort *data)
 {
 	if (is_sorted(data->a_stack) == 0)
@@ -45,7 +48,5 @@ void	print_sort_commands(t_sort *data)
 		else if (data->num_count_a > 3)
 			sort_large_amount(data);
 	}
-	//print_a_stack(data->a_stack);
-	//print_b_stack(data->b_stack);
 	free_lists(data);
 }
