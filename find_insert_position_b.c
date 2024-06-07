@@ -6,20 +6,11 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 18:10:57 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/04 18:12:34 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/07 15:27:09 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-//max_b = find_max(data->b_stack);
-//if (current_a->num > max_b->num)
-//{
-//	if (max_b->index != 0)
-//		current_a->steps_count++;
-//}
-
-// are you changing b_stack when you connect end node with start ?
 
 int	find_insert_position_b(t_sort *data, int nbr)
 {

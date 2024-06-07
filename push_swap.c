@@ -6,13 +6,11 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:38:00 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/01 13:59:16 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/07 15:31:56 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// return (0) or return (1) when there is no parameters ???
 
 static int	is_str_empty(char *str)
 {

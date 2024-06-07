@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 17:47:27 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 19:44:15 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/07 15:29:23 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ static void	move_min_up(t_sort *data)
 			min_a->inf.rotate_a_dir);
 	}
 }
-
-// this line "current_b = current_b->next" doesn't go as planed
 
 void	make_push_op_a(t_sort *data)
 {

@@ -6,18 +6,11 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:56:22 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 19:21:14 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/07 15:36:33 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// this "(data->num_count > 3)" should be in other loop above
-// while (current_a). Because after finding the best number to push
-// you should push it and then "data->num_count--" and than start from the first
-// node again for finding the best node to push
-
-// check if everywhere where it is needed you have 'static' in function's name
 
 static int	choose_min_steps(t_sort *data)
 {
@@ -45,10 +38,6 @@ static int	choose_min_steps(t_sort *data)
 // if rotate direction is 1  -> rotate_norm()
 // if rotate direction is -1 -> rotate_reverse()
 
-// if stack == 1 -> handle 'a' stack
-
-// what about when there is no need for rotations ??
-
 static void	calc_rotations(int *rotate_num, int *rotate_dir, int index,
 int stack_size)
 {
@@ -69,11 +58,6 @@ int stack_size)
 		(*rotate_dir) = -1;
 	}
 }
-
-// if (inf->rotate_a_dir == inf->rotate_b_dir)
-// then rotatings are the same direction
-
-// in the end you need to add +1 because of push number to 'b' step
 
 static void	rotation_plus(t_rotate_num *inf, int *steps_count)
 {
@@ -116,9 +100,6 @@ static int	choose_push_num(t_sort *data)
 	}
 	return (choose_min_steps(data));
 }
-
-// when while loops (data->num_count_a > 3) is ended
-// do you need to rotate 'b' stack if it is not in descending order ???
 
 void	sort_large_amount(t_sort *data)
 {

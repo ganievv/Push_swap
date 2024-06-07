@@ -6,7 +6,7 @@
 /*   By: sganiev <sganiev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 18:50:03 by sganiev           #+#    #+#             */
-/*   Updated: 2024/06/06 17:41:01 by sganiev          ###   ########.fr       */
+/*   Updated: 2024/06/07 15:31:09 by sganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ static void	rotate_both_stacks(t_list **stack_a, t_list **stack_b,
 		current_a->inf.rotate_b--;
 	}
 }
-
-// in rotate_norm() function you should delete printing of 'ra'
-// (maybe also the same thing in reverse)
 
 void	make_push_op_b(t_sort *data, int nbr)
 {
