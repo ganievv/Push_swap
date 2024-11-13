@@ -10,33 +10,39 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME		:= push_swap
 
-SRC = push_swap.c check_nums.c ft_atol.c check_err_flag.c \
-clean_arr_ptrs.c fill_a_stack.c print_sort_commands.c     \
-find_last_node.c  swap.c rotate_norm.c sort_less_three.c  \
-rotate_reverse.c free_lists.c sort_large_amount.c push.c  \
-is_sorted.c put_index.c stack_size.c find_min.c           \
-find_insert_position_b.c push_top_two.c make_push_op_b.c  \
-find_max.c make_push_op_a.c \
+LIBFT_DIR	:= ./libft
+LIBFT		:= $(LIBFT_DIR)/libft.a
 
-CFLAGS = -Wall -Wextra -Werror
+VPATH		:= ./src
 
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
+SRC			:= push_swap.c check_nums.c ft_atol.c check_err_flag.c		\
+			   clean_arr_ptrs.c fill_a_stack.c print_sort_commands.c	\
+			   find_last_node.c  swap.c rotate_norm.c sort_less_three.c	\
+			   rotate_reverse.c free_lists.c sort_large_amount.c push.c	\
+			   is_sorted.c put_index.c stack_size.c find_min.c			\
+			   find_insert_position_b.c push_top_two.c make_push_op_b.c	\
+			   find_max.c make_push_op_a.c								\
 
-OBJ = $(SRC:.c=.o)
+ODIR		:= obj
+OBJ			:= $(patsubst %.c,$(ODIR)/%.o,$(SRC))
 
-%.o: %.c
-	cc $(CFLAGS) -c $< -o $@
+CFLAGS		:= -Wall -Wextra -Werror
 
-all: $(NAME)
+all: $(ODIR) $(NAME)
+
+$(NAME): $(LIBFT) $(OBJ)
+	cc $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
-$(NAME): $(LIBFT) $(OBJ)
-	cc $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+$(ODIR):
+	@mkdir -p $(ODIR)
+
+$(ODIR)/%.o: %.c
+	cc $(CFLAGS) -c $< -o $@
 
 clean:
 	make -C $(LIBFT_DIR) -s clean
@@ -45,7 +51,8 @@ clean:
 fclean: clean
 	make -C $(LIBFT_DIR) -s fclean
 	rm -f $(NAME)
+	rm -rf $(ODIR)
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re, $(LIBFT), $(NAME)
+.PHONY: all clean fclean re
