@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static void	calc_rotations(int *rotate_num, int *rotate_dir, int index,
 int stack_size)
