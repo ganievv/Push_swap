@@ -2,7 +2,6 @@
 
 ## Table of Contents
 - [Project Overview](#project-overview)
-- [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Example](#example)
