@@ -50,13 +50,13 @@ pa
   - `sa` - Swap the first two elements of stack `a`.
   - `sb` - Swap the first two elements of stack `b`.
   - `ss` - `sa` and `sb` at the same time.
-  - `pa` - Push the first element of `b` to `a`.
-  - `pb` - Push the first element of `a` to `b`.
-  - `ra` - Rotate `a` (shift all elements up by one).
-  - `rb` - Rotate `b` (shift all elements up by one).
+  - `pa` - Push the first element of `b` to `a`. Do nothing if b is empty.
+  - `pb` - Push the first element of `a` to `b`. Do nothing if a is empty
+  - `ra` - Rotate `a` (shift all elements up by one). The first element becomes the last one.
+  - `rb` - Rotate `b` (shift all elements up by one). The first element becomes the last one.
   - `rr` - `ra` and `rb` at the same time.
-  - `rra` - Reverse rotate `a` (shift all elements down by one).
-  - `rrb` - Reverse rotate `b` (shift all elements down by one).
+  - `rra` - Reverse rotate `a` (shift all elements down by one). The last element becomes the first one.
+  - `rrb` - Reverse rotate `b` (shift all elements down by one). The last element becomes the first one.
   - `rrr` - `rra` and `rrb` at the same time.
 
 - **Program Goals**:
