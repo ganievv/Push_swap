@@ -47,11 +47,11 @@ pa
 
 ## Mandatory Part Details
 - **Stack Operations**:
-  - `sa` - Swap the first two elements of stack `a`.
-  - `sb` - Swap the first two elements of stack `b`.
+  - `sa` - Swap the first 2 elements at the top of stack `a`. Do nothing if there is only one or no elements.
+  - `sb` -  Swap the first 2 elements at the top of stack `b`. Do nothing if there is only one or no elements.
   - `ss` - `sa` and `sb` at the same time.
-  - `pa` - Push the first element of `b` to `a`. Do nothing if b is empty.
-  - `pb` - Push the first element of `a` to `b`. Do nothing if a is empty
+  - `pa` - Take the first element at the top of `b` and put it at the top of `a`. Do nothing if `b` is empty.
+  - `pb` - Take the first element at the top of `a` and put it at the top of `b`. Do nothing if `a` is empty.
   - `ra` - Rotate `a` (shift all elements up by one). The first element becomes the last one.
   - `rb` - Rotate `b` (shift all elements up by one). The first element becomes the last one.
   - `rr` - `ra` and `rb` at the same time.
